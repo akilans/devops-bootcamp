@@ -88,6 +88,10 @@
     - grep Invalid /var/log/auth.log
     - grep -i invalid /var/log/auth.log
     - cat /var/log/auth.log | grep invalid
+    - find /home -name "hello.txt"
+    - find /home -iname "hello.txt"
+    - find /var/log -name "*.log"
+    - find /home -type d -name "hello"
 - package management - apt, yum, dnf
 - basic networking - ifconfig, curl, ping, ip, netstat
 - DNS lookup and port scanning: dig, nslookup, nmap
