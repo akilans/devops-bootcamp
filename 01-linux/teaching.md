@@ -1,5 +1,7 @@
 # Teaching
 
+## Linux Basics
+
 - What is linux
     - Unix - Frist successfull OS, CLI only
     - minix - not opensource
@@ -45,16 +47,16 @@
     - pwd
     - ~ / . .. 
     - tab
-- user & group management - whoami, id, adduser, usermod
+- user & group management - whoami, id, useradd, usermod
     - /etc/passwd - users and password
     - /etc/group - collection of users
     - Each file or directory in Linux can have user, group and permissions
-    - sudo adduser akilan
+    - sudo useradd -m akilan
     - id akilan ( list all info, uid, gid and groups)
     - su akilan
     - try running sudo command
     - sudo usermod -aG sudo akilan
-    - sudo deluser --remove-home username
+    - sudo userdel -r akilan
     - sudo -i -> switch to root user
 - file and folder permissions - chmod, chown
     - root users can we any files, folders
@@ -92,6 +94,8 @@
     - find /home -iname "hello.txt"
     - find /var/log -name "*.log"
     - find /home -type d -name "hello"
+
+    
 - package management - apt, yum, dnf
 - basic networking - ifconfig, curl, ping, ip, netstat
 - DNS lookup and port scanning: dig, nslookup, nmap
@@ -101,3 +105,39 @@
 
 - Setup a httpd sever and serve html files
 - Setup a nginx server and serve html files
+
+
+## Linux Advanced
+
+- symlinks -> shortcut to another file or folder ( not a copy -> reference)
+    ```bash
+    ln -s /home/akilan/myfile.txt link.txt  
+    ls -l
+    lrwxrwxrwx 1 akilan akilan   18 Aug 15 10:00 link.txt -> /home/akilan/myfile.txt
+    ```
+- Hard links -> points to Inode (data) not path, if the target deleted no impact (only for files)
+    ```bash
+    echo "Akilan" > hello.txt
+    ln hello.txt hello-bk.txt
+    ls -lai
+    ```
+- | tee vs echo > 
+    ```bash
+    sudo echo "Akilan" > /var/log/akilan.log #fails (permission denied)
+    echo "Akilan" | sudo tee /var/log/akilan.log #works
+    ```
+- redirection
+    - >, >>, <
+    - STDIN (0) — keyboard input
+    - STDOUT (1) — text output to the terminal    
+    - STDERR (2) — error messages to the terminal
+    ```bash
+    echo "Akilan"
+    # Akilan (stdout)
+    echo "Akilan" 1> hello.txt
+    ech "Akilan" 2> error.log # errors are captured in error.log file
+    ls . /fake > result.log 2> error.log # errors goes to error.log, stdout goes to result.log
+    # /dev/null - trash
+    la fake/ > /dev/null 2>&1 # send errors to the same location stdout
+    find / -name hello.txt 2>/dev/null 
+    ```
