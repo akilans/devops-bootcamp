@@ -15,6 +15,11 @@
 
 - redirection
     - |, >, >>, <
+
+    ```bash
+    cat hello.log | grep akilan
+    du -ah . | sort -hr | head -n 5 # display top 5 largest files/directories
+    ```
     - STDIN (0) — keyboard input
     - STDOUT (1) — text output to the terminal    
     - STDERR (2) — error messages to the terminal
@@ -59,19 +64,49 @@
     kill -9 $ID
 ```
 - grep
-
-- nproc
-
-- free
-
-- df
-
-- du
+```bash
+    grep "error" app.log     # lines containing 'error'
+    grep -i "error" app.log  # case-insensitive
+    cat hello.log | grep -i akilan # find from previous command
+```
+- system info 
+```bash
+    nproc # number of cpus
+    free # RAM memory details
+    df # storage details
+    du # folder wise storage
+```
 
 - awk
+```bash
+    # awk 'pattern { action }' file
+    ls -l | awk '{print}'
+    ls -l | awk '/hello/ {print $9}'
+    free -m | awk '/Mem:/ {print "Used:", $3, "Free:", $4}'
+    df -h / | awk 'NR==2 {print $2}' # 2nd row only
+```
 
 - sed
+```bash
+    #sed 's/pattern/replacement/' file
+    echo "Windows is great" | sed 's/Windows/Linux/'
+    sed -i 's/Windows/Linux/' os.log # replace first Windows by Linux on each line
+    sed -i 's/Windows/Linux/g' os.log # replace all Windows by Linux on each line
+    sed -i 's/Windows/Linux/Ig' os.log # replace all Windows by Linux on each line + ignore case sensitive
+
+```
 
 - wget
+```bash
+    wget https://example.com/file.zip  # download to current dir with same name
+    wget -O myfile.zip https://example.com/file.zip  # save as custom name
+```
 
 - curl
+```bash
+    curl localhost
+    curl -O localhost/index.html
+    curl -o apache.html localhost/index.html
+    curl -s -o /dev/null -w %{http_code} localhost
+    curl -L -s -o /dev/null -w %{http_code} google.com # -L follows redirect
+```
