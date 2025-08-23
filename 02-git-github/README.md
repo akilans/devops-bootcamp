@@ -2,6 +2,9 @@
 
 ## 1. Introduction to Version Control
 - What is version control? Why do we need it?
+    - Every change is stored. You can see what was changed, when, and by whom.
+    - Multiple developers can work together without overwriting each other’s changes.
+    - You can create a new branch to test features.
 - Difference between local files, cloud storage, and Git.
 - Benefits of Git: history, collaboration, branching.
 
