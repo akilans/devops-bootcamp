@@ -1,0 +1,26 @@
+services:
+  python-app:
+    image: my-python-app:v2
+    ports:
+      - "9001:9001"
+    environment:
+      - PORT=9001
+    depends_on:
+      node-app:
+        condition: service_healthy
+
+  node-app:
+    image: my-node-app:v1
+    ports:
+      - "8001:8001"
+    environment:
+      - PORT=8001
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  # docker network create my-network
+  # docker container run -d -p 8001:8001 -e PORT=8001 --name node-app --network my-network my-node-app:v1
+  # docker container run -d -p 9001:9001 -e PORT=9001 --name python-app --network my-network my-python-app:v2

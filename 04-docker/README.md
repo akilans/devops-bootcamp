@@ -62,3 +62,14 @@ docker volume inspect httpd-volume
 
 # entrypoint & cmd examples
 ```
+
+
+###
+
+Entrypoint, cmd
+node app
+python app
+docker image layers
+docker networks
+docker compose
+docker buildx
