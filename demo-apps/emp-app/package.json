@@ -1,0 +1,21 @@
+{
+  "name": "emp-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo test in progress",
+    "akilan": "echo 'Hello Akilan'"
+  },
+  "keywords": [
+    "Employee",
+    "App"
+  ],
+  "author": "Akilan",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

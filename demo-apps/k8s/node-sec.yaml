@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  emp-sec-key: U2VjcmV0MTIz
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: emp-app-secret

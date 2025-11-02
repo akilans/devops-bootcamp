@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: node-app
+  name: node-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-app
+  template:
+    metadata:
+      labels:
+        app: node-app
+    spec:
+      containers:
+      - image: akilan/demo-node-app:v1
+        name: demo-node-app
+        envFrom:
+        - configMapRef:
+            name: node-app-cm
+        env:
+        - name: PORT
+          value: "8000"
+        - name: API_URL
+          value: "http://emp-app-svc:9000/"
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: emp-app-secret
+              key: emp-sec-key
