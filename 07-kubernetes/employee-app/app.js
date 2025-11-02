@@ -5,6 +5,7 @@ const app = express()
 app.use(cors()) // allow cross-origin requests
 
 const port = process.env.PORT || 3000
+const API_KEY = process.env.API_KEY
 
 const EMPLOYEE_DATA = [
   { id: 1, name: 'Alice', position: 'Developer' },
@@ -15,8 +16,8 @@ const EMPLOYEE_DATA = [
 // Endpoint to get employee data, protected by API key
 app.get('/', (req, res) => {
 
-    const API_KEY = req.headers['x-api-key'] || ''
-    if(API_KEY === "secret123"){
+    const API_KEY_FROM_REQUEST = req.headers['x-api-key'] || ''
+    if(API_KEY_FROM_REQUEST === API_KEY){
         res.json(EMPLOYEE_DATA)
     } else {
         res.status(401).send('Unauthorized: Invalid API Key')

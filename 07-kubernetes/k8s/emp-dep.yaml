@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: emp-app
+  name: emp-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emp-app
+  template:
+    metadata:
+      labels:
+        app: emp-app
+    spec:
+      containers:
+      - image: akilan/employee-app:v1
+        name: employee-app
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PORT
+          value: "3000"
+        - name: API_KEY
+          value: "secret123"
