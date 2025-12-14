@@ -25,8 +25,20 @@
 ### Conditions & Loops
     * operator
     * if, elif, else
+    * grade system application
+
+### Loops
     * for
     * while
     * continue
     * break
     * grade system application
+
+### File Handling
+    * modes (w,r,a)
+    * Write, Read, Append
+    * with open
+    * file app
+    * json pretty print
+    * json.dumps vs json dump
+    * json.loads vs json load
